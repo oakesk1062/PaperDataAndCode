@@ -1,0 +1,41 @@
+To accommodate size limits, the .mat file was broken up into smaller files.
+Each file contains the following structures:
+      tunedNoLoad_noLoad - results from the controller tuned for only no load case, running without a load
+      tunedNoLoad_Load   - results from the controller tuned for only no load case, running with a load
+      tunedLoad_noLoad   - results from the controller tuned for only with load case, running without a load
+      tunedLoad_Load     - results from the controller tuned for only with load case, running with a load
+      tunedBoth_noLoad   - results from the controller tuned for both load cases, running without a load
+      tunedBoth_Load     - results from the controller tuned for both load cases, running with a load
+
+The fields for each structure are as follows:
+      For simulationResults_errors.mat:
+              t           - time vector (in seconds)
+              qerror      - link-side tracking error, row corresponds to joint number (radians)
+              qmerror     - motor-side tracking error, row corresponds to joint number (radians)
+              Perror      - End-effector position error, row corresponds to (x,y,z) (meters)
+              EulerError  - End-effector orientation error, row corresponds to (roll,pitch,yaw) Euler angles (radians)
+              
+      For simulationResults_linkSide.mat:
+              t         - time vector (seconds)
+              qdesired  - desired link-side position, row corresponds to joint number (radians)
+              q         - actual link-side position, row corresponds to joint number (radians)
+              qdot      - link-side velocity, row corresponds to joint number (radians/sec)
+               
+      For simulationResults_motorSide.mat:
+              t          - time vector (seconds)
+              qmdesired  - desired motor-side position, row corresponds to joint number (radians)
+              qm         - actual motor-side position, row corresponds to joint number (radians)
+              qmdot      - motor-side velocity, row corresponds to joint number (radians/sec)
+              
+      For simulationResults_Spatial.mat:
+              t             - time vector (seconds)
+              Pdesired      - desired end-effector position, row corresponds to (x,y,z) (meters)
+              P             - acutal end-effector position, row corresponds to (x,y,z) (meters)
+              eulerDesired  - desired end-effector orientation, row corresponds to (roll,pitch,yaw) Euler angles (radians)
+              euler         - actual end-effector orientation, row corresponds to (roll,pitch,yaw) Euler angles (radians)
+              
+      For simulationResults_remainingVariables.mat:
+              t           - time vector (seconds)
+              motorTorque - torque used to move the motor, row corresponds to joint number
+              Rdesired    - desired end-effector orientation as rotation matrix (access individual rotation as Rdesired(:,:,i))
+              R           - actual end-effector orientation as rotation matrix (access individual rotation as R(:,:,i))
